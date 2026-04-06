@@ -3,26 +3,31 @@
 
 using namespace std;
 
-inline void dfsRec(vector<vector<int>>&adjList, vector<bool> &visited, int source) {
-    visited[source] = true;
+extern vector<vector<int>> adjList;
+extern int vertices;
 
-    cout << source << ' ';
+inline void dfsRec(vector<bool> &visited, int source, vector<int>& result) {
+    visited[source] = true;
+    result.push_back(source);
+    // cout << source << ' ';
 
     for (int neighbor : adjList[source])
         if (!visited[neighbor])
-            dfsRec(adjList, visited, neighbor);
+            dfsRec(visited, neighbor, result);
 }
 
-inline void dfs(vector<vector<int>>&adjList, int source) {
+inline vector<int> dfs(int source) {
     if (source < 0 || source >= adjList.size()) {
         cout << "Invalid source vertex" << '\n';
-        return;
+        return adjList.front();
     }
 
-    vector<bool> visited(adjList.size(), false);
+    vector<bool> visited(vertices + 1, false);
+    vector<int> result;
 
-    dfsRec(adjList, visited, source);
-    cout << '\n';
+    dfsRec(visited, source, result);
+
+    return result;
 }
 
 #endif //GRAPHS_DFS_BFS_DFSFUNCTIONS_H
