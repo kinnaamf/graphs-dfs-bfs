@@ -31,18 +31,29 @@ inline void inputAdjList() {
             adjList[i].push_back(neighbor);
         }
     }
-
-    /* for (int i = 1; i <= vertices; ++i) {
-        if (!adjList.empty()) {
-            for (int neighbor : adjList[i])
-                cout << neighbor << ' ';
-        }
-        cout << "0\n";
-    } */
 }
 
 inline void addEdge(int s, int t) {
     adjList[s].push_back(t);
+}
+
+inline void inputTreeAdjList() {
+    cout << "Number of vertices: ";
+    cin >> vertices;
+
+    adjList.clear();
+    adjList.resize(vertices + 1);
+
+    for (int i = 1; i <= vertices; i++) {
+        cout << "Children of vertex " << i << " | (enter 0 to stop): ";
+
+        int child;
+        while (true) {
+            cin >> child;
+            if (child == 0) break;
+            adjList[i].push_back(child);
+        }
+    }
 }
 
 
