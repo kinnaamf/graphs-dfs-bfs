@@ -9,13 +9,13 @@ using namespace std;
 extern vector<vector<int>> adjList;
 extern int vertices;
 
-inline vector<int> bfs(int start) {
+inline vector<int> bfs(int source) {
     vector<bool> visited(vertices + 1, false);
     queue<int> q;
     vector<int> result;
 
-    q.push(start);
-    visited[start] = true;
+    q.push(source);
+    visited[source] = true;
 
     while (!q.empty()) {
         int node = q.front();
